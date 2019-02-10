@@ -5,8 +5,6 @@
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, minimum-scale=1, user-scalable=no, minimal-ui, viewport-fit=cover">
     <meta name="apple-mobile-web-app-capable" content="yes">
-    <!-- Color theme for statusbar -->
-    <meta name="theme-color" content="#2196f3">
     <!-- Your app title -->
     <title>My App</title>
     <!-- Path to Framework7 Library Bundle CSS -->
@@ -17,23 +15,21 @@
   <body>
     <!-- App root element -->
     <div id="app">
-
       <!-- Your main view, should have "view-main" class -->
       <div class="view view-main">
         <!-- Initial Page, "data-name" contains page name -->
         <div data-name="home" class="page">
-
           <!-- Scrollable page content -->
           <div class="page-content">
-            <!-- Link to another page -->
+            <img class="loading-screen" src="imgs/loadingPage.png">
+            <a class="link" href="/page2/">Next</a>
           </div>
         </div>
       </div>
     </div>
     <!-- Path to Framework7 Library Bundle JS-->
-    <script type="text/javascript" src="js/jquery.3.3.1.min.js"></script>
+    <script type="text/javascript" src="js/jquery-3.3.1.min.js"></script>
     <script type="text/javascript" src="js/framework7.min.js"></script>
-    <!-- Path to your app js-->
     <script type="text/javascript" src="js/ABetterMe.js"></script>
   </body>
 </html>
