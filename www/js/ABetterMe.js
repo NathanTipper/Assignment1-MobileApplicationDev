@@ -3,23 +3,28 @@ var app = new Framework7({
   routes: [
     {
       name: 'index',
-      url: '/',
-      path: './index.html'
+      path: '/',
+      url: './index.html'
     },
     {
       name: 'page2',
-      url: '/page2/',
-      path: './pages/page2.html'
+      path: '/page2/',
+      url: './pages/page2.html'
     }
   ]
 });
 
-$$ = Dom7;
+var $$ = Dom7;
 
 var mainView = app.views.create('.view-main');
 $(document).click(function() {
-  mainView.router.navigate('/page2/');
+  //self.app.views.main.router.navigate('/page2/');
+  //console.log(self.app.views.main.router);
 });
+
+$$(document).on('page:init', '.page[data-name="page2"]', function(e) {
+  console.log("Hello");
+})
 
 function Habit(name, journalEntry) {
   this.name = name;
