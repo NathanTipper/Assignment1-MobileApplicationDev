@@ -1,0 +1,45 @@
+<div class="page" data-name="main">
+  <div class="toolbar tabbar toolbar-bottom-md">
+    <div class="toolbar-inner main-toolbar">
+      <a href="#habits" class="tab-link tab-link-active">Habits</a>
+      <a href="#diaries" class="tab-link">Diaries</a>
+      <a href="#overview" class="tab-link">Overview</a>
+    </div>
+  </div>
+  <div class="tabs-animated-wrap">
+    <div class="tabs">
+      <div class="page-content main-page tab tab-active" id="habits">
+        <h1>Habits</h1>
+        <div class="list no-hairlines no-hairlines-between">
+          <ul id="habits-list">
+          </ul>
+        </div>
+        <div class="add-circle-container">
+          <i id="add-habit-button" class="material-icons" style="font-size: 48px;">add_circle</i>
+        </div>
+        <div class="popup popup-add-habit">
+          <div class="list">
+            <ul>
+              <li class="item-content item-input">
+                <div class="item-inner">
+                  <div class="item-title item-label">Name</div>
+                  <div class="item-input-wrap">
+                    <input type="text" name="name">
+                    <span class="input-clear-button"></span>
+                  </div>
+                </div>
+              </li>
+            </ul>
+          </div>
+          <button class="button button-fill" onclick="AddHabit()">Create</button>
+        </div>
+      </div>
+      <div class="page-content main-page tab" id="diaries">
+        <h1>Coming Soon!</h1>
+      </div>
+      <div class="page-content main-page tab" id="overview">
+        <h1>Coming Soon!</h1>
+      </div>
+    </div>
+  </div>
+</div>

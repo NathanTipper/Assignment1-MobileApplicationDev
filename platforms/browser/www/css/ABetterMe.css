@@ -1,6 +1,11 @@
 /* Fonts */
 
 /* Tags  */
+textarea {
+  box-sizing: border-box;
+  height: 100%;
+  width: 100%;
+}
 
 /* Classes */
 .loading-screen {
@@ -8,6 +13,95 @@
   height: 100vh;
 }
 
+.add-circle-container {
+  text-align: right;
+  margin-right: 5%;
+}
+
+.questions-page {
+  background-color: #81e4da;
+  color: #93748a;
+}
+
+.questions-page h2, h3 {
+  text-align: center;
+}
+
+.inner-navbar {
+  text-align: left;
+  margin-top: 2%;
+  margin-left: 2%;
+}
+
+.theWhy-question {
+  text-align: center;
+}
+
+.theWhy-inner-toolbar {
+  text-align: right;
+}
+
+.theWhy-wrapper {
+  background-color: white;
+  margin: 40px 5%;
+  padding: 3%;
+  height: 50%;
+}
+
+.tab-link-active {
+  color: black;
+}
+
+.main-toolbar div {
+  text-align: center;
+  margin: auto;
+}
+
+.main-page {
+  background-color: #47e5bc;
+  color: #9f9fad;
+}
+
+.popup {
+  background-color: #47e5bc;
+  color: #9f9fad;
+}
+
+.popup-add-habit h1 {
+  text-align: center;
+}
+
+.radio-option {
+  margin-left: 8%;
+}
+
 /* IDs */
+#habits h1 {
+  text-align: center;
+}
+
+#habits-list {
+  width: 80%;
+  margin: auto;
+  border: 2px solid #81e4da;
+}
+
+#habits-list li {
+  border-bottom: 1px solid #81e4da;
+}
+
+#splash-screen-preloader {
+  position: absolute;
+  bottom: 5%;
+  left: 47%;
+}
+
+#popup-day-input {
+  display: none;
+}
+
+#popup-custom-day-input {
+  display: none;
+}
 
 /* Typography */
