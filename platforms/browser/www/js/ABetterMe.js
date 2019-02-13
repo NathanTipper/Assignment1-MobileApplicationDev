@@ -47,9 +47,9 @@ const habitPopup = app.popup.create({
   content: `
   <div class="popup popup-add-habit">
     <h1>Add Habit</h1>
-    <div class="list inline-labels">
-      <ul>
-        <li class="item-content item-input">
+    <div class="list inline-labels no-hairlines-between">
+      <ul id="add-habits-list">
+        <li id="habit-name" class="item-content item-input">
           <div class="item-inner">
             <div class="item-title item-label">Name</div>
             <div class="item-input-wrap">
@@ -85,30 +85,42 @@ const habitPopup = app.popup.create({
             </div>
           </label>
         </li>
-        <li id="popup-day-input" class="item-content item-input>
+        <li id="popup-day-input" class="item-content item-input">
           <div class="item-inner">
             <div class="item-title item-label">Day of Month</div>
             <div class="item-input-wrap">
-              <input type="text" name="name">
+              <input type="number" name="day-of-month" min="1" max="31" placeholder="Day of the month to repeat habit">
               <span class="input-clear-button"></span>
             </div>
           </div>
         </li>
-        <li id="popup-custom-day-input">
-          <div class="block block-strong">
-            <p> Mon  <label class="checkbox"><input type="checkbox"><i class=icon-checkbox"></i></label>
-                Tue  <label class="checkbox"><input type="checkbox"><i class=icon-checkbox"></i></label>
-                Wed  <label class="checkbox"><input type="checkbox"><i class=icon-checkbox"></i></label>
-                Thu  <label class="checkbox"><input type="checkbox"><i class=icon-checkbox"></i></label>
-                Fri  <label class="checkbox"><input type="checkbox"><i class=icon-checkbox"></i></label>
-                Sat  <label class="checkbox"><input type="checkbox"><i class=icon-checkbox"></i></label>
-                Sun  <label class="checkbox"><input type="checkbox"><i class=icon-checkbox"></i></label>\
+        <li>
+          <div id="popup-custom-day-input" class="block block-strong">
+            <p> Mon  <label class="checkbox"><input type="checkbox" value="M"><i class="icon-checkbox"></i></label>
+                Tue  <label class="checkbox"><input type="checkbox" value="T"><i class="icon-checkbox"></i></label>
+                Wed  <label class="checkbox"><input type="checkbox" value="W"><i class="icon-checkbox"></i></label>
+                Thu  <label class="checkbox"><input type="checkbox" value="Th"><i class="icon-checkbox"></i></label>
             </p>
+            <p>
+                Fri  <label class="checkbox"><input type="checkbox" value="F"><i class="icon-checkbox"></i></label>
+                Sat  <label class="checkbox"><input type="checkbox" value="S"><i class="icon-checkbox"></i></label>
+                Sun  <label class="checkbox"><input type="checkbox" value="Su"><i class="icon-checkbox"></i></label>
+            </p>
+          </div>
+        </li>
+        <li id="popup-time-reminder-input" >
+          <div class="item-inner no-hairlines">
+            <div class="item-title item-label">Reminder Time</div>
+            <div>
+              <input type="time" name="time-of-day" min="0:00" max="23:59" placeholder="Time between 0 and 23:59 (Optional. Default is 10:00)">
+            </div>
           </div>
         </li>
       </ul>
     </div>
-    <button class="button button-fill" onclick="AddHabit()">Create</button>
+    <p class="align-center">
+      <button class="small-button button button-fill" onclick="AddHabit()">Create</button>
+    </p>
   </div>`
 });
 
@@ -146,20 +158,10 @@ $$(document).on('page:init', '.page[data-name="theWhy"]', function(e) {
 });
 
 $$(document).on('page:init', '.page[data-name="main"]', function(e) {
-  // TEST DATA
-  CreateHabit("Give dog his treats", { days: ['M', 'W', 'F'], time: 1400 }, "This is good");
-  CreateHabit("Dishes", { days: ['M', 'W', 'F'], time: 1900}, "Gooooood");
-
-  let habitsList = $("#habits-list");
-  for(let i = 0; i < habits.length; ++i) {
-    habitsList.append(`<li><a onclick='editHabit(${1})' class='item-link item-content'><div class='item-inner'>\
-                      <div class='item-title'>${habits[i].name}</div>\
-                      <div class='item-after'>${habits[i].streak}</div></div></a></li>`);
-  }
+  UpdateHabits()
 
   $("#add-habit-button").click(function() {
     habitPopup.open();
-    console.log($(".radio-option input"));
     $(".radio-option input").on("change", function() {
       switch($(".radio-option input:checked").val()) {
         case 'daily':
@@ -168,7 +170,7 @@ $$(document).on('page:init', '.page[data-name="main"]', function(e) {
           break;
         case 'monthly':
           $("#popup-day-input").show();
-          $("#popup-custom-day-input").hide();
+          $("#popup-custom-day-input").hide()
           break;
         case 'custom':
           $("#popup-day-input").hide();
@@ -192,10 +194,44 @@ function Habit(name, reminders, journalEntry) {
 // Functions
 function CreateHabit(name, reminders, journalEntry) {
   habits.push(new Habit(name, reminders, journalEntry));
+  UpdateHabits();
 }
 
 function AddHabit() {
+  // Get all info
+  let nameOfHabit = $("#habit-name input").val();
+  let frequency = $(".radio-option input:checked").val();
+  let timeOfDay = $("#popup-time-reminder-input input").val();
+
+  let dayOfMonth = 0;
+  let days = [];
+  switch(frequency) {
+    case 'monthly':
+      dayOfMonth = $("#popup-day-input input").val();
+      break;
+    case 'custom':
+      let checks = $("#popup-custom-day-input input:checked");
+      for(let i = 0; i < checks.length; ++i) {
+        days.push(checks[i].value);
+      }
+      break;
+  }
+
+  let reminders = { frequency: frequency, timeOfDay: timeOfDay, dayOfMonth: dayOfMonth, days: days };
+  // fake data for now until we get journals working
+  let journalEntry = "I am being run down by a hippopatimus... Please help.";
+  ResetHabitPopup();
   habitPopup.close();
+  CreateHabit(nameOfHabit, reminders, journalEntry);
+}
+
+function UpdateHabits() {
+  let habitsList = $("#habits-list");
+  for(let i = 0; i < habits.length; ++i) {
+    habitsList.append(`<li><a onclick='editHabit(${1})' class='item-link item-content'><div class='item-inner'>\
+                      <div class='item-title'>${habits[i].name}</div>\
+                      <div class='item-after'>${habits[i].streak}</div></div></a></li>`);
+  }
 }
 
 // Obtain all the objectives the user types in and put them in a list.
@@ -227,4 +263,18 @@ function GetWhy() {
   theWhy = $("#theWhy")[0].value;
 
   mainView.router.navigate('/main/');
+}
+
+function ResetHabitPopup() {
+  $("#habit-name input").val("");
+  $(".radio-option input:checked").prop('checked', false);
+  $("#popup-time-reminder-input input").val("");
+  $("#popup-day-input input").val("");
+
+  let checks = $("#popup-custom-day-input input:checked");
+  for(let i = 0; i < checks.length; ++i) {
+    checks[i].prop('checked', false);
+  }
+
+
 }

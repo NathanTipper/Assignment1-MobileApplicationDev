@@ -15,7 +15,7 @@ textarea {
 
 .add-circle-container {
   text-align: right;
-  margin-right: 5%;
+  margin-right: 8%;
 }
 
 .questions-page {
@@ -75,6 +75,18 @@ textarea {
   margin-left: 8%;
 }
 
+.align-center {
+  text-align: center;
+}
+
+.small-button {
+  --button-width: 40%;
+  width: var(--button-width);
+  display: inline-block;
+  position: absolute;
+  bottom: 5%;
+  left: calc(50% - var(--button-width) / 2);
+}
 /* IDs */
 #habits h1 {
   text-align: center;
@@ -102,6 +114,23 @@ textarea {
 
 #popup-custom-day-input {
   display: none;
+  margin: 0;
 }
 
+#popup-custom-day-input p {
+  text-align: center;
+}
+
+#popup-time-reminder-input {
+  margin-left: 8%;
+}
+
+#popup-time-reminder-input input {
+  font-size: 1.2em;
+  margin-right: 8%
+}
+
+#add-habits-list li {
+  margin-top: 20px;
+}
 /* Typography */
