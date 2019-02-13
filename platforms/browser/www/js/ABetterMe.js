@@ -7,9 +7,9 @@ var app = new Framework7({
       url: './index.html'
     },
     {
-      name: 'page2',
-      path: '/page2/',
-      url: './pages/page2.html'
+      name: 'objectives',
+      path: '/objectives/',
+      url: './pages/objectives.html'
     }
   ]
 });
@@ -22,7 +22,7 @@ $(document).click(function() {
   //console.log(self.app.views.main.router);
 });
 
-$$(document).on('page:init', '.page[data-name="page2"]', function(e) {
+$$(document).on('page:init', '.page[data-name="objectives"]', function(e) {
   console.log("Hello");
 })
 
