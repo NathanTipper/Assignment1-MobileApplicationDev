@@ -1,10 +1,19 @@
 /* Fonts */
+@font-face {
+  font-family: 'Kalam';
+  src: url('../fonts/Kalam/Kalam-Regular.ttf');
+}
+@font-face {
+    font-family: 'Gruppo';
+    src: url('../fonts/Gruppo/Gruppo-Regular.ttf');
+}
 
 /* Tags  */
 textarea {
   box-sizing: border-box;
   height: 100%;
   width: 100%;
+  color: black;
 }
 
 /* Classes */
@@ -19,8 +28,9 @@ textarea {
 }
 
 .questions-page {
-  background-color: #81e4da;
-  color: #93748a;
+  font-family: 'Kalam', cursive;
+  background-color: #1A1463;
+  color: #FFFFFF;
 }
 
 .questions-page h2, h3 {
@@ -58,17 +68,20 @@ textarea {
 }
 
 .main-page {
-  background-color: #47e5bc;
-  color: #9f9fad;
+  background-color: #6FCCFF;
+  color: #5E21BA;
+  font-family: 'Gruppo', cursive;
 }
 
 .popup {
-  background-color: #47e5bc;
-  color: #9f9fad;
+  background-color: #6FCCFF;
+  color: #5E21BA;
+  font-family: 'Gruppo', cursive;
 }
 
 .popup-add-habit h1 {
   text-align: center;
+  font-size: 3.0em;
 }
 
 .radio-option {
@@ -80,22 +93,59 @@ textarea {
 }
 
 .small-button {
-  --button-width: 40%;
+  --button-width: 60%;
   width: var(--button-width);
   display: inline-block;
   position: absolute;
   bottom: 5%;
   left: calc(50% - var(--button-width) / 2);
 }
+
+.item-title {
+  font-size: 1.4em;
+}
+
+.item-label {
+  font-size: 24px;
+}
+
+.inline-label {
+  font-size: 1.6em;
+}
 /* IDs */
+#objectives-list input {
+  color: #FFFFFF;
+}
+
+#objectives-list input::placeholder {
+  color: #FFFFFF;
+  opacity: 0.5;
+}
+
+#values-list input {
+  color: #FFFFFF;
+}
+
+#values-list input::placeholder {
+  color: #FFFFFF;
+  opacity: 0.5;
+}
+
 #habits h1 {
   text-align: center;
+}
+
+#no-habits-message {
+  text-align: center;
+  margin: 0 5%;
+  font-size: 1.2em;
 }
 
 #habits-list {
   width: 80%;
   margin: auto;
   border: 2px solid #81e4da;
+  display: none;
 }
 
 #habits-list li {
@@ -126,11 +176,65 @@ textarea {
 }
 
 #popup-time-reminder-input input {
-  font-size: 1.2em;
-  margin-right: 8%
+  font-size: 1.4em;
+  margin-right: 8%;
 }
 
 #add-habits-list li {
-  margin-top: 20px;
+  margin-top: 10px;
+}
+
+#habit-name .item-label {
+  font-size: 1.6em;
+}
+
+#popup-time-reminder-input .item-label {
+  font-size: 1.6em;
+  width: 50%
+}
+
+#popup-day-input {
+  text-align: center;
+}
+
+#popup-day-input .item-label {
+  font-size: 1.6em;
+  width: 50%;
+}
+
+#popup-day-input .item-input-wrap {
+  width: 50%;
+  text-align: center;
+}
+
+#pop-day-input input {
+  margin-right: 20px;
+}
+
+#popup-add-journal {
+  margin-left: 8%;
+}
+
+#create-habit-button {
+  background-color: #1A1463;
+  color: #FFFFFF;
+  height: 40px;
+}
+
+#finished-editing-button {
+  background-color: #1A1463;
+  color: #FFFFFF;
+}
+
+#delete-habit-button {
+  background-color: #db5c5c;
+  color: #FFFFFF;
+}
+
+#edit-habit-buttons {
+  display: none;
+  position: absolute;
+  width: 100%;
+  bottom: 2%;
 }
 /* Typography */
