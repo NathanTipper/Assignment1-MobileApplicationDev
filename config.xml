@@ -1,11 +1,11 @@
 <?xml version='1.0' encoding='utf-8'?>
 <widget id="com.phonegap.helloworld" version="1.0.0" xmlns="http://www.w3.org/ns/widgets" xmlns:gap="http://phonegap.com/ns/1.0">
-    <name>FrameworkTut</name>
+    <name>ABetterMe</name>
     <description>
-        A blank PhoneGap app.
+   		An app to track your habits and create journals which reflective on your day to day life.
     </description>
     <author email="support@phonegap.com" href="http://phonegap.com">
-        PhoneGap Team
+        Nathan Tipper
     </author>
     <content src="index.html" />
     <access origin="*" />

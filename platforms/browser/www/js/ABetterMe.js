@@ -129,8 +129,8 @@ const addHabitPopup = app.popup.create({
     </div>
     <div id="edit-habit-buttons" class="block">
       <div class="row">
-        <button id="finished-editing-button" class="col button button-fill">Done</button>
         <button id="delete-habit-button" class="col button button-fill">Delete</button>
+        <button id="finished-editing-button" class="col button button-fill">Done</button>
       </div>
     </div>
     <button id="create-habit-button" class="small-button button button-fill" onclick="AddHabit()">Create</button>
@@ -175,27 +175,10 @@ $$(document).on('page:init', '.page[data-name="main"]', function(e) {
   UpdateHabits()
 
   $("#add-habit-button").click(function() {
-    addHabitPopup.open();
-    $(".radio-option input").on("change", function() {
-      switch($(".radio-option input:checked").val()) {
-        case 'daily':
-          $("#popup-day-input").hide();
-          $("#popup-custom-day-input").hide();
-          break;
-        case 'monthly':
-          $("#popup-day-input").show();
-          $("#popup-custom-day-input").hide()
-          break;
-        case 'custom':
-          $("#popup-day-input").hide();
-          $("#popup-custom-day-input").show();
-          break;
-        default:
-          console.log("Unknown option was checked");
-      }
-    })
+    InitializeAddHabitPopup();
   });
-});
+})
+
 
 // Classes
 function Habit(name, info, journalEntry) {
@@ -224,6 +207,30 @@ function HabitInfo(frequency, dayOfMonth, timeOfDay, days) {
 function CreateHabit(name, reminders, journalEntry) {
   habits.push(new Habit(name, reminders, journalEntry));
   UpdateHabits();
+}
+
+function InitializeAddHabitPopup() {
+    addHabitPopup.open();
+    $("#edit-habit-buttons").hide();
+    $("#create-habit-button").show();
+    $(".radio-option input").on("change", function() {
+      switch($(".radio-option input:checked").val()) {
+        case 'daily':
+          $("#popup-day-input").hide();
+          $("#popup-custom-day-input").hide();
+          break;
+        case 'monthly':
+          $("#popup-day-input").show();
+          $("#popup-custom-day-input").hide()
+          break;
+        case 'custom':
+          $("#popup-day-input").hide();
+          $("#popup-custom-day-input").show();
+          break;
+        default:
+          console.log("Unknown option was checked");
+      }
+    })
 }
 
 function AddHabit() {
